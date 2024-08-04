@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" >
+<head >
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" >
+    <title >Pointer App</title >
+    <link rel="stylesheet" href="style.css" >
+</head >
+<body >
+<div class="wrapper" >
+    <div class="toolbar" >
+        <label >
+            <h1 >ToolBar</h1 >
+        </label >
+        <div style="width: 100%;background: black; height: 2px; margin-bottom: 8px;" ></div >
+        <!--Eraser and pen-->
+        <div style="background: #969292;display: flex;justify-content: space-between" >
+            <label for="eraser" >
+                Eraser 🧹
+            </label >
+            <input id="eraser" class="eraser" type="checkbox" >
+        </div >
+        <div style="background: #969292;display: flex;justify-content: space-between" >
+            <label for="pen" >
+                Pen 🖋
+            </label >
+            <input id="pen" class="pen" type="checkbox" >
+        </div >
+        <div style="background: #969292;display: flex;justify-content: space-between" >
+            <label for="colorPiker" >
+                Color Piker
+            </label >
+
+        </div >
+    </div >
+
+    <div class="boomPoint" >
+        <canvas id="boom" ></canvas >
+    </div >
+
+<script src="js/canvas.js"></script>
+</div >
+</body >
+</html >
