@@ -28,18 +28,39 @@
             <input id="pen" class="pen" type="checkbox" >
         </div >
         <div style="background: #969292;display: flex;justify-content: space-between" >
-            <label for="colorPiker" >
+            <label  >
                 Color Piker
             </label >
-
+            <div
+            onclick="openColorPiker()"
+            id="openColorPiker"
+            style="color:rgba(0,0,255,0.8); cursor: pointer;"
+            >
+                Open Color Piker
+            </div >
+            <div class="colorPikerPopup" id="colorPikerPopup">
+                <div
+                 style="color: #ed5050; cursor: pointer;margin: 3px"
+                onclick="closeColorPiker()"
+                >
+                close
+                </div>
+             <div>
+                 <canvas id="colorPickerCanvas"  ></canvas >
+                 <div id="colorDisplay" style="width: 100%; height: 100%;" ></div >
+             </div>
+            </div>
         </div >
     </div >
-
+<!--Boom Paint-->
     <div class="boomPoint" >
         <canvas id="boom" ></canvas >
     </div >
 
-<script src="js/canvas.js"></script>
+    <script src="js/canvas.js" ></script >
+    <script src="js/events.js" ></script >
+    <script src="js/localStorge.js" ></script >
+    <script src="js/colorPiker.js"></script>
 </div >
 </body >
 </html >

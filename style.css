@@ -34,3 +34,12 @@ input{
     height: 100%;
 }
 
+.colorPikerPopup{
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    border-radius: 8px;
+    display: none;
+    background: #5b5e8c;
+    border: 1px solid black;
+}
