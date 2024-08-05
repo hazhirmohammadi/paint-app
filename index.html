@@ -22,15 +22,37 @@
             <input id="eraser" class="eraser" type="checkbox" >
         </div >
         <div style="background: #969292;display: flex;justify-content: space-between" >
-            <label for="pen" >
+            <label for="penCheckbox" >
                 Pen 🖋
             </label >
-            <input id="pen" class="pen" type="checkbox" >
+            <input id="penCheckbox" class="pen" type="checkbox" >
+
         </div >
         <div style="background: #969292;display: flex;justify-content: space-between" >
-            <label  >
-                Color Piker
+            <label for="penCheckbox" >
+                 Fill Pen
             </label >
+            <input id="penFill" class="pen" type="checkbox" >
+        </div >
+        <div style="background: #969292;display: flex;justify-content: space-between" >
+            <label for="penCheckbox" >
+                Pen Radius
+            </label >
+            <input  class="penRadius" type="number">
+            <select id="penRadius" class="penRadius">
+                <option>4px</option>
+                <option>8px</option>
+                <option>16px</option>
+                <option>20px</option>
+
+            </select>
+        </div >
+        <div style="background: #969292;display: flex;justify-content: space-between" >
+            <div   style="display: flex;align-items: center">
+                Color Piker
+                <div id="colorPenDisplay" style="width: 12px;height: 12px;margin-left: 2px;margin-top: 1px;"></div>
+            </div >
+<!--            <div id="colorPenDisplay" style="width: 10px;height: 10px;"></div>-->
             <div
             onclick="openColorPiker()"
             id="openColorPiker"
@@ -53,13 +75,14 @@
         </div >
     </div >
 <!--Boom Paint-->
-    <div class="boomPoint" >
+    <div class="boomPaint" id="boomPaint"  >
         <canvas id="boom" ></canvas >
     </div >
 
     <script src="js/canvas.js" ></script >
     <script src="js/events.js" ></script >
-    <script src="js/localStorge.js" ></script >
+    <script src="js/localStorage.js"></script>
+    <script src="js/helper.js"></script>
     <script src="js/colorPiker.js"></script>
 </div >
 </body >
