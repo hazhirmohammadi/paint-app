@@ -27,7 +27,6 @@ function getPenSizing() {
          const penData = GetValueFromLocalStorage("penData");
          console.log(penData["radius"] = numbers.join());
          localStorage.setItem("penData", JSON.stringify(penData));
-         // localStorage.setItem("penSize", numbers.join());
       } catch (e) {
          console.log(e);
       }
