@@ -28,7 +28,7 @@ penCheckbox.addEventListener("click", () => {
    }
 });
 Eraser.addEventListener("click", () => {
-   Pen.checked = !Eraser.checked;
+   penCheckbox.checked = !Eraser.checked;
    if (Eraser.checked === true) {
       penStatus = false;
    }
@@ -66,7 +66,7 @@ addEventListener('mouseup', () => {
 
 
 function pen() {
-   const penData = localStorage.getItem("penData");
+   const penData = localStorage.getItem("penData")
    const getPosition = localStorage.getItem("getClient");
    const data = JsonParser(penData);
    const position = JsonParser(getPosition);
@@ -77,7 +77,7 @@ function pen() {
       c.strokeStyle = colorPen;
       c.stroke();
       c.fill()
-      c.fillStyle="rgba(255,100,251,.8)"
+      c.fillStyle=colorPen
 
    }, 100);
 }

@@ -20,6 +20,7 @@ colorPicker.addEventListener('click', (event) => {
    const currentColor = colorDisplay.style.backgroundColor = color;
    if (localColor !== currentColor) {
       console.log("change color");
-      localStorage.setItem("color", colorDisplay.style.backgroundColor = color);
+      SetValueFromLocalStorage("color",color);
    } else console.log("this color in defined");
 });
+

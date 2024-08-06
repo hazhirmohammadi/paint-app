@@ -21,6 +21,7 @@
             </label >
             <input id="eraser" class="eraser" type="checkbox" >
         </div >
+
         <div style="background: #969292;display: flex;justify-content: space-between" >
             <label for="penCheckbox" >
                 Pen 🖋
@@ -28,31 +29,40 @@
             <input id="penCheckbox" class="pen" type="checkbox" >
 
         </div >
+
+          <!-- Fill Pen-->
         <div style="background: #969292;display: flex;justify-content: space-between" >
             <label for="penCheckbox" >
                  Fill Pen
             </label >
             <input id="penFill" class="pen" type="checkbox" >
         </div >
+
+       <!--    Pen Sizing   -->
         <div style="background: #969292;display: flex;justify-content: space-between" >
             <label for="penCheckbox" >
                 Pen Radius
             </label >
-            <input  class="penRadius" type="number">
-            <select id="penRadius" class="penRadius">
-                <option>4px</option>
-                <option>8px</option>
-                <option>16px</option>
-                <option>20px</option>
-
+            <select id="penSizing" class="penRadius" onclick="getPenSizing()">
+                <option value="4">4px</option>
+                <option value="8" selected>8</option>
+                <option value="16">16px</option>
+                <option value="20">20px</option>
+                <option value="24">24px</option>
+                <option value="28">28px</option>
+                <option value="32">32px</option>
+                <option value="34">34px</option>
+                <option value="38">38px</option>
             </select>
         </div >
+
+        <!--  Color Piker  -->
         <div style="background: #969292;display: flex;justify-content: space-between" >
             <div   style="display: flex;align-items: center">
                 Color Piker
                 <div id="colorPenDisplay" style="width: 12px;height: 12px;margin-left: 2px;margin-top: 1px;"></div>
             </div >
-<!--            <div id="colorPenDisplay" style="width: 10px;height: 10px;"></div>-->
+            <!-- open Color  -->
             <div
             onclick="openColorPiker()"
             id="openColorPiker"
@@ -80,7 +90,6 @@
     </div >
 
     <script src="js/canvas.js" ></script >
-    <script src="js/events.js" ></script >
     <script src="js/localStorage.js"></script>
     <script src="js/helper.js"></script>
     <script src="js/colorPiker.js"></script>
