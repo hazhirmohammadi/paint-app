@@ -10,9 +10,10 @@ body {
 }
 
 .boomPaint {
+    position: relative;
     grid-column: span 4 / span 4;
     height: 100vh;
-width: 100%;
+    width: 100%;
 }
 
 .toolbar {
@@ -24,17 +25,19 @@ width: 100%;
     background: #eae9e9;
     gap: 8px;
 }
-input{
+
+input {
     outline: none;
     border: none;
 }
-.boomPoint canvas{
+
+.boomPoint canvas {
 
     width: 100%;
     height: 100%;
 }
 
-.colorPikerPopup{
+.colorPikerPopup {
     position: absolute;
     left: 10%;
     top: 30%;
@@ -42,4 +45,15 @@ input{
     display: none;
     background: #5b5e8c;
     border: 1px solid black;
+    z-index: 999;
+}
+
+.click-marker {
+    position: absolute;
+    border: 1px dashed #4768cb;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(89, 124, 229, 0.54);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }

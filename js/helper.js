@@ -1,6 +1,4 @@
 const ColorPikerPopup = document.getElementById("colorPikerPopup");
-const getRadius = document.getElementById("penRadius");
-
 /** open Color Piker
  * */
 let isOpen = false;
@@ -17,6 +15,8 @@ function closeColorPiker() {
    isOpen = false;
 }
 
+/** getPenSizing for set and get font size tools
+ * */
 function getPenSizing() {
    const NUMERIC_REGEXP = /[-]{0,1}[\d]*[,]?[\d]*[.]{0,1}[\d]+/g;
    const element = document.getElementById("penSizing");
@@ -32,19 +32,27 @@ function getPenSizing() {
       }
 }
 
+/** JsonParser is a function for parse jsons
+ * */
 function JsonParser(json) {
    return JSON.parse(json);
 }
 
+/** ToStringFiy function is using in setting in localStorage
+ * */
 function ToStringFiy(json) {
    return JSON.stringify(json);
 }
 
+/** Getting values in LocalStorage
+ * */
 function GetValueFromLocalStorage(key) {
    const data = localStorage.getItem(key);
-      return JsonParser(data);
+   return JsonParser(data);
 }
 
+/** Setting value in LocalStorage
+ * */
 function SetValueFromLocalStorage(key, value) {
    if (typeof value === "object") {
       setter(ToStringFiy(value));
@@ -57,3 +65,4 @@ function SetValueFromLocalStorage(key, value) {
       localStorage.setItem(key.toString(), value);
    }
 }
+

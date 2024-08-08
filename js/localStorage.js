@@ -10,7 +10,6 @@ window.addEventListener("load", () => {
    localStorage.setItem("penData", JSON.stringify(ci));
 });
 
-
 /** this listener for get current mouse position in paint boom for using this in @Pen
  * */
 boomPaint.addEventListener("mousemove", (event) => {

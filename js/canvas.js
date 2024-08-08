@@ -4,24 +4,86 @@ const penCheckbox = document.getElementById("penCheckbox");
 const boomPaint = document.getElementById("boomPaint");
 const brashCheckbox = document.getElementById("brash");
 const lineCheckbox = document.getElementById("line");
-/***
- Define Canvas Element For Boom Paint
- */
+
+/** Define Canvas Element For Boom Paint
+ * */
 canvas.width = boomPaint.offsetWidth;
 canvas.height = boomPaint.offsetHeight;
 canvas.style.height = "100%";
 canvas.style.width = "100%";
 let c = canvas.getContext("2d");
-
-
+/** this variable for save shapes in dom
+ * */
+let shapes = [];
+/** Track the selected shape
+ * */
+let selectedShape = null;
 /***  Pen Eraser checkbox handel
  */
 let toolType = "";
 let lineToolIsTrue = false;
+/*** Handel Pen And Eraser
+ */
+let isDrawing = false;
+/** colorPen variable using is in all tools color
+ * */
+let colorPen;
+/** this variable for pen function
+ * lastX ,lastY
+ * */
+let lastX, lastY;
+/** firstClickPosition for save fist click in line fuction
+ */
+let firstClickPosition = null;
+/** this variable using in first click position lines
+ * */
+let clickMarker = null;
+/** colorPenDisplay for display current color pen
+ * */
+const colorPenDisplay = document.getElementById("colorPenDisplay");
 
+class Tools {
+   constructor() {
+   }
+
+   brash() {
+      const data = GetValueFromLocalStorage("penData");
+      const position = GetValueFromLocalStorage("getClient");
+      setTimeout(() => {
+         c.beginPath();
+         c.arc(position.x, position.y, data.radius, data.startAngel, data.endAngle, data.counterClockWise);
+         c.strokeStyle = colorPen;
+         c.stroke();
+         c.fill();
+         c.fillStyle = colorPen;
+      }, 60);
+   }
+
+   eraser() {
+      const getPosition = localStorage.getItem("getClient");
+      const position = JsonParser(getPosition);
+      c.clearRect(position.x, position.y, 100, 100);
+   }
+
+   pen() {
+      const fontSize = GetValueFromLocalStorage("penData");
+      const position = GetValueFromLocalStorage("getClient");
+      if (!isDrawing) return;
+      const currentX = position.x;
+      const currentY = position.y;
+      c.lineTo(currentX, currentY);
+      c.strokeStyle = colorPen;
+      c.lineWidth = fontSize.radius;
+      c.stroke();
+   }
+}
+
+const tools = new Tools();
+
+/** handel check box tools action
+ * */
 function handleCheckboxChange(event) {
    const checkedCheckbox = event.target;
-
    if (checkedCheckbox !== penCheckbox) {
       penCheckbox.checked = false;
    }
@@ -34,8 +96,8 @@ function handleCheckboxChange(event) {
    if (checkedCheckbox !== lineCheckbox) {
       lineCheckbox.checked = false;
    }
-
-   // Update toolType based on the checked checkbox
+   /** Update toolType based on the checked checkbox
+    **/
    if (penCheckbox.checked) {
       lineToolIsTrue = false;
       toolType = "pen";
@@ -59,36 +121,35 @@ eraserCheckbox.addEventListener("change", handleCheckboxChange);
 brashCheckbox.addEventListener("change", handleCheckboxChange);
 lineCheckbox.addEventListener("change", handleCheckboxChange);
 
-/*** Handel Pen And Eraser
- */
-let isDrawing = false;
-let colorPen;
-let lastX, lastY;
-
-addEventListener('mousedown', (event) => {
+/** this event listener use in all action tools in app
+ * */
+addEventListener('mousedown', () => {
    isDrawing = true;
    if (toolType === "pen") {
-      lastX = event.clientX - canvas.offsetLeft;
-      lastY = event.clientY - canvas.offsetTop;
-
+      const rect = boomPaint.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      lastX = x;
+      lastY = y;
       c.beginPath();
       c.moveTo(lastX, lastY);
    }
 });
-
-addEventListener('mousemove', (event) => {
+addEventListener('mousemove', () => {
    //this condition for pen Active or eraser Active
    if (toolType) {
       if (isDrawing) {
          switch (toolType) {
             case "pen":
-               pen();
+               if (!lineToolIsTrue)
+                  tools.pen();
                break;
             case "brash":
-               Brash();
+               if (!lineToolIsTrue)
+                  tools.brash();
                break;
             default:
-               eraser();
+               tools.eraser();
          }
       }
    }
@@ -96,111 +157,66 @@ addEventListener('mousemove', (event) => {
 addEventListener('mouseup', () => {
    isDrawing = false;
 });
-
-const colorPenDisplay = document.getElementById("colorPenDisplay");
 document.addEventListener("click", () => {
-   const c = localStorage.getItem("color");
-   colorPen = c;
-   colorPenDisplay.style.background = c;
+   const color = localStorage.getItem("color");
+   colorPen = color;
+   colorPenDisplay.style.background = color;
 });
-
-
-let fistClick = false;
-let sendData = false;
-let dataPosition = {
-   fx: 0,
-   fy: 0,
-   lx: 0,
-   ly: 0
-};
 addEventListener("click", (evt) => {
+
    if (!lineToolIsTrue) return removeEventListener;
-   let firstX = 0;
-   let firstY = 0;
-   let secondX = 0;
-   let secondY = 0;
 
+   if (!firstClickPosition) {
+      function SetPositionFirst() {
+         const position = GetValueFromLocalStorage("getClient");
+         // const position = JsonParser(getPosition);
 
+         const rect = boomPaint.getBoundingClientRect();
+         const x = event.clientX - rect.left;
+         const y = event.clientY - rect.top;
+         firstClickPosition = {fx: position.x, fy: position.y};
 
-   function SetPositionFirst() {
-      console.log("first");
-      const getPosition = localStorage.getItem("getClient");
-      const position = JsonParser(getPosition);
-      dataPosition.fx= position.x;
-      dataPosition.fy = position.y;
-      fistClick = true;
+         function createDiv() {
+            clickMarker = document.createElement('div');
+            clickMarker.classList.add('click-marker');
+            clickMarker.style.left = `${x}px`;
+            clickMarker.style.top = `${y}px`;
+            boomPaint.appendChild(clickMarker);
+         }
+
+         createDiv();
+      }
+
+      SetPositionFirst();
+   } else {
+      function SetPositionSecond() {
+         const getPosition = localStorage.getItem("getClient");
+         const position = JsonParser(getPosition);
+         const secondClickPosition = {lx: position.x, ly: position.y};
+         line(firstClickPosition, secondClickPosition);
+      }
+
+      SetPositionSecond();
+
+      firstClickPosition = null;
    }
 
-   function SetPositionLast() {
-      console.log("last");
-      const getPosition = localStorage.getItem("getClient");
-      const position = JsonParser(getPosition);
-      dataPosition.lx = position.x;
-      dataPosition.ly = position.y;
-      sendData = true;
-   }
-   SetPositionFirst();
-
-   if (fistClick) {
-      SetPositionLast();
-      fistClick = false;
-
-   }
-   if (sendData) {
-      line(dataPosition);
-   }else {
-      console.log(false);
-   }
 });
 
-function Brash() {
-   const penData = localStorage.getItem("penData");
-   const getPosition = localStorage.getItem("getClient");
-   const data = JsonParser(penData);
-   const position = JsonParser(getPosition);
-
-   setTimeout(() => {
-      c.beginPath();
-      c.arc(position.x, position.y, data.radius, data.startAngel, data.endAngle, data.counterClockWise);
-      c.strokeStyle = colorPen;
-      c.stroke();
-      c.fill();
-      c.fillStyle = colorPen;
-
-   }, 100);
-}
-
-function eraser() {
-   const getPosition = localStorage.getItem("getClient");
-   const position = JsonParser(getPosition);
-   c.clearRect(position.x, position.y, 100, 100);
-}
-
-function pen() {
-   const penData = localStorage.getItem("penData");
-   const getPosition = localStorage.getItem("getClient");
-   const position = JsonParser(getPosition);
-   const sizeLine = JsonParser(penData);
-   if (!isDrawing) return;
-   const currentX = position.x;
-   const currentY = position.y;
-
-   c.lineTo(currentX, currentY);
-   c.strokeStyle = colorPen;
-   c.lineWidth = sizeLine.radius;
-   c.stroke();
-   lastX = currentX;
-   lastY = currentY;
-}
-
-let lineArray = [];
-
-function line(dataPosition) {
-   const {fx, fy, lx, ly} = dataPosition;
-   console.log(dataPosition);
+/** line function for drawing lines
+ * */
+function line(first, second) {
+   const {fx, fy} = first;
+   const {lx, ly} = second;
    c.beginPath();
    c.moveTo(fx, fy);
    c.lineTo(lx, ly);
    c.lineWidth = 10;
    c.stroke();
+
+   if (clickMarker) {
+      clickMarker.remove();
+      clickMarker = null;
+   }
 }
+
