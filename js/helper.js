@@ -66,3 +66,41 @@ function SetValueFromLocalStorage(key, value) {
    }
 }
 
+function createState(initialState) {
+   let state = initialState;
+   return {
+      getState: () => state,
+      setState: (newState) => {
+         state = newState;
+      }
+   };
+}
+
+function setterStore(store, key, value) {
+   const currentState = store.getState();
+   store.setState({
+      ...currentState,
+      [key]: value
+   });
+}
+
+function getterStore(store, key) {
+   const currentState = store.getState();
+   return currentState[key];
+}
+
+function useState(setterName, getterName) {
+   return {
+      [setterName]: (store, key, value) => {
+         setterStore(store, key, value);
+         return true
+      },
+      [getterName]: (store, keys) => {
+         if (Array.isArray(keys)) {
+            return keys.map(key => getterStore(store, key));
+         } else {
+            return getterStore(store, keys);
+         }
+      }
+   };
+}

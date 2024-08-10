@@ -15,12 +15,13 @@ ctx.fillStyle = gradient;
 ctx.fillRect(0, 0, colorPicker.width, colorPicker.height);
 
 colorPicker.addEventListener('click', (event) => {
+   debugger;
    const pixelData = ctx.getImageData(event.offsetX, event.offsetY, 1, 1).data;
    const color = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`;
    const currentColor = colorDisplay.style.backgroundColor = color;
    if (localColor !== currentColor) {
       console.log("change color");
-      SetValueFromLocalStorage("color",color);
+      localStorage.setItem("color",color);
    } else console.log("this color in defined");
 });
 
