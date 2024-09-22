@@ -11,18 +11,18 @@
 <div class="wrapper" >
     <div class="toolbar" >
         <label >
-            <h1 >ToolBar</h1 >
+            <h1 class="title-toolbar">ToolBar</h1 >
         </label >
-        <div style="width: 100%;background: black; height: 2px; margin-bottom: 8px;" ></div >
+        <div style="width: 100%;background: var(--orenge-500); height: 2px; margin-bottom: 8px;" ></div >
         <!--Eraser and pen-->
-        <div style="background: #969292;display: flex;justify-content: space-between" >
+        <div class="container-tool"  >
             <label for="eraser" >
                 Eraser 🆑
             </label >
             <input id="eraser" class="eraser" type="checkbox" >
         </div >
 
-        <div style="background: #969292;display: flex;justify-content: space-between" >
+        <div class="container-tool" >
             <label for="penCheckbox" >
                 Pen 🖋
             </label >
@@ -31,7 +31,7 @@
         </div >
 
           <!-- Fill Pen-->
-        <div style="background: #969292;display: flex;justify-content: space-between" >
+        <div class="container-tool">
             <label for="penCheckbox" >
                  Fill Pen
             </label >
@@ -39,14 +39,21 @@
         </div >
 
         <!-- Brash -->
-        <div style="background: #969292;display: flex;justify-content: space-between" >
+        <div class="container-tool" >
             <label for="Brash" >
                 Brash 🖌
             </label >
             <input id="brash" class="pen" type="checkbox" >
         </div >
+        <!-- Brash -->
+        <div class="container-tool" >
+            <label for="pencil" >
+                pencil ✏
+            </label >
+            <input id="pencil" class="pen" type="checkbox" >
+        </div >
         <!-- line -->
-        <div style="background: #969292;display: flex;justify-content: space-between" >
+        <div class="container-tool" >
             <label for="line" >
                 line 📏
             </label >
@@ -54,8 +61,8 @@
         </div >
 
        <!--    Pen Sizing   -->
-        <div style="background: #969292;display: flex;justify-content: space-between" >
-            <label for="penCheckbox" >
+        <div class="container-tool">
+            <label for="penCheckbox" class="tool-name">
                  Size
             </label >
             <select id="penSizing" class="penRadius" onclick="getPenSizing()">
@@ -72,7 +79,7 @@
         </div >
 
         <!--  Color Piker  -->
-        <div style="background: #969292;display: flex;justify-content: space-between" >
+        <div class="container-tool" >
             <div   style="display: flex;align-items: center">
                 Color Piker
                 <div id="colorPenDisplay" style="width: 12px;height: 12px;margin-left: 2px;margin-top: 1px;"></div>
@@ -81,7 +88,7 @@
             <div
             onclick="openColorPiker()"
             id="openColorPiker"
-            style="color:rgba(0,0,255,0.8); cursor: pointer;"
+
             >
                 Open Color Piker
             </div >

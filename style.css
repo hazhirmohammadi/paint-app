@@ -1,3 +1,31 @@
+:root {
+    --cyan: #4da1ac;
+
+    --natrule-50: #F9FAFA;
+    --natrule-100: #F1F2F4;
+    --natrule-200: #E6E8EA;
+    --natrule-300: #D8DBDF;
+    --natrule-400: #C7CCD1;
+    --natrule-500: #B3BAC1;
+    --natrule-600: #848F9A;
+    --natrule-700: #4E575F;
+    --natrule-800: #2E3338;
+    --natrule-900: #171A1C;
+
+    --orenge-50: #fff0de;
+    --orenge-100: #ffe6c9;
+    --orenge-200: #ffdaae;
+    --orenge-300: #ffce92;
+    --orenge-400: #ffc177;
+    --orenge-500: #ffb55c;
+    --orenge-600: #d5974d;
+    --orenge-700: #aa793d;
+    --orenge-800: #805b2e;
+    --orenge-900: #553c1f;
+
+    --border-radius:8px
+}
+
 body {
     margin: 0;
     box-sizing: border-box;
@@ -16,13 +44,21 @@ body {
     width: 100%;
 }
 
+.title-toolbar {
+    color: var(--orenge-500);
+    background: var(--natrule-900);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: var(--orenge-500) 0 10px 15px -3px;
+}
+
 .toolbar {
     display: flex;
     flex-direction: column;
     grid-column: span 1 / span 1;
     height: 100vh;
     padding: 10px 8px 10px 8px;
-    background: #eae9e9;
+    background: var(--natrule-800);
     gap: 8px;
 }
 
@@ -41,9 +77,11 @@ input {
     position: absolute;
     left: 10%;
     top: 30%;
-    border-radius: 8px;
+    padding: 0 9px 8px ;
+    border-radius: var(--border-radius);
     display: none;
-    background: #5b5e8c;
+    background: var(--natrule-700);
+    box-shadow: var(--natrule-900) 0 10px 15px -3px;
     border: 1px solid black;
     z-index: 999;
 }
@@ -56,4 +94,34 @@ input {
     background-color: rgba(89, 124, 229, 0.54);
     border-radius: 50%;
     transform: translate(-50%, -50%);
+}
+
+.container-tool {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--natrule-300);
+    padding: 4px;
+    border-radius: var(--border-radius);
+    transition: color 0.5s ease;
+}
+.container-tool:hover {
+    background: var(--orenge-500);
+}
+.container-tool label{
+    font-family: Garuda, sans-serif;
+    font-size: 14px;
+}
+.container-tool #openColorPiker{
+    color: var(--natrule-50);
+    background: var(--natrule-900);
+    padding: 1px 7px;
+    border-radius: var(--border-radius);
+    font-size: 12px;
+    cursor: pointer;
+}
+.container-tool #openColorPiker:hover {
+    color: var(--natrule-50);
+    background: var(--natrule-700);
+
 }
