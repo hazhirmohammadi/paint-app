@@ -154,7 +154,7 @@ function handleMouseDown(event) {
 
 function handleMouseMove() {
     const staus = myState.get(Store, ["lineToolIsTrue", "toolType", "isDrawing"]);
-    // console.log(staus)
+
     if (staus[1] && staus[2]) {
         if (!staus[0]) {
             switch (staus[1]) {
@@ -385,3 +385,15 @@ function isPointNearLine(px, py, x1, y1, x2, y2, tolerance) {
 
     return (dx * dx + dy * dy) <= tolerance * tolerance;
 }
+
+
+
+
+const exportBtn = document.getElementById('exportBtn');
+exportBtn.addEventListener('click', () => {
+    const dataURL = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'canvas-image.png';
+    link.click();
+});

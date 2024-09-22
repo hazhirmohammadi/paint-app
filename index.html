@@ -1,70 +1,71 @@
 <!doctype html>
-<html lang="en" >
-<head >
-    <meta charset="UTF-8" >
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" >
-    <title >Pointer App</title >
-    <link rel="stylesheet" href="style.css" >
-</head >
-<body >
-<div class="wrapper" >
-    <div class="toolbar" >
-        <label >
-            <h1 class="title-toolbar">ToolBar</h1 >
-        </label >
-        <div style="width: 100%;background: var(--orenge-500); height: 2px; margin-bottom: 8px;" ></div >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pointer App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="toolbar">
+        <label>
+            <h1 class="title-toolbar">ToolBar</h1>
+        </label>
+        <div style="width: 100%;background: var(--orenge-500); height: 2px; margin-bottom: 8px;"></div>
         <!--Eraser and pen-->
-        <div class="container-tool"  >
-            <label for="eraser" >
-                Eraser 🆑
-            </label >
-            <input id="eraser" class="eraser" type="checkbox" >
-        </div >
-
-        <div class="container-tool" >
-            <label for="penCheckbox" >
-                Pen 🖋
-            </label >
-            <input id="penCheckbox" class="pen" type="checkbox" >
-
-        </div >
-
-          <!-- Fill Pen-->
         <div class="container-tool">
-            <label for="penCheckbox" >
-                 Fill Pen
-            </label >
-            <input id="penFill" class="pen" type="checkbox" >
-        </div >
+            <label for="eraser">
+                Eraser 🆑
+            </label>
+            <input id="eraser" class="eraser" type="checkbox">
+        </div>
+
+        <div class="container-tool">
+            <label for="penCheckbox">
+                Pen 🖋
+            </label>
+            <input id="penCheckbox" class="pen" type="checkbox">
+
+        </div>
+
+        <!-- Fill Pen-->
+        <div class="container-tool">
+            <label for="penCheckbox">
+                Fill Pen
+            </label>
+            <input id="penFill" class="pen" type="checkbox">
+        </div>
 
         <!-- Brash -->
-        <div class="container-tool" >
-            <label for="Brash" >
+        <div class="container-tool">
+            <label for="Brash">
                 Brash 🖌
-            </label >
-            <input id="brash" class="pen" type="checkbox" >
-        </div >
+            </label>
+            <input id="brash" class="pen" type="checkbox">
+        </div>
         <!-- Brash -->
-        <div class="container-tool" >
-            <label for="pencil" >
+        <div class="container-tool">
+            <label for="pencil">
                 pencil ✏
-            </label >
-            <input id="pencil" class="pen" type="checkbox" >
-        </div >
+            </label>
+            <input id="pencil" class="pen" type="checkbox">
+        </div>
         <!-- line -->
-        <div class="container-tool" >
-            <label for="line" >
+        <div class="container-tool">
+            <label for="line">
                 line 📏
-            </label >
-            <input id="line" class="pen" type="checkbox" >
-        </div >
+            </label>
+            <input id="line" class="pen" type="checkbox">
+        </div>
 
-       <!--    Pen Sizing   -->
+        <!--    Pen Sizing   -->
         <div class="container-tool">
             <label for="penCheckbox" class="tool-name">
-                 Size
-            </label >
+                Size
+            </label>
             <select id="penSizing" class="penRadius" onclick="getPenSizing()">
                 <option value="4">4px</option>
                 <option value="8" selected>8</option>
@@ -76,44 +77,47 @@
                 <option value="34">34px</option>
                 <option value="38">38px</option>
             </select>
-        </div >
+        </div>
 
         <!--  Color Piker  -->
-        <div class="container-tool" >
-            <div   style="display: flex;align-items: center">
+        <div class="container-tool">
+            <div style="display: flex;align-items: center">
                 Color Piker
                 <div id="colorPenDisplay" style="width: 12px;height: 12px;margin-left: 2px;margin-top: 1px;"></div>
-            </div >
+            </div>
             <!-- open Color  -->
             <div
-            onclick="openColorPiker()"
-            id="openColorPiker"
+                    onclick="openColorPiker()"
+                    id="openColorPiker"
 
             >
                 Open Color Piker
-            </div >
+            </div>
             <div class="colorPikerPopup" id="colorPikerPopup">
                 <div
-                 style="color: #ed5050; cursor: pointer;margin: 3px"
-                onclick="closeColorPiker()"
+                        style="color: #ed5050; cursor: pointer;margin: 3px"
+                        onclick="closeColorPiker()"
                 >
-                close
+                    close
                 </div>
-             <div>
-                 <canvas id="colorPickerCanvas"  ></canvas >
-                 <div id="colorDisplay" style="width: 100%; height: 100%;" ></div >
-             </div>
+                <div>
+                    <canvas id="colorPickerCanvas"></canvas>
+                    <div id="colorDisplay" style="width: 100%; height: 100%;"></div>
+                </div>
             </div>
-        </div >
-    </div >
-<!--Boom Paint-->
-    <div class="boomPaint" id="boomPaint"  >
-        <canvas id="boom" ></canvas >
-    </div >
+        </div>
+
+        <!--        -->
+        <button id="exportBtn">Export as Image</button>
+    </div>
+    <!--Boom Paint-->
+    <div class="boomPaint" id="boomPaint">
+        <canvas id="boom"></canvas>
+    </div>
     <script src="js/localStorage.js"></script>
     <script src="js/helper.js"></script>
     <script src="js/colorPiker.js"></script>
-    <script src="js/canvas.js" ></script >
-</div >
-</body >
-</html >
+    <script src="js/canvas.js"></script>
+</div>
+</body>
+</html>
