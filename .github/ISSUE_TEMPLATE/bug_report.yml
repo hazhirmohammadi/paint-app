@@ -1,0 +1,107 @@
+name: Bug report 🐛
+description: Report a bug or an issue with the project.
+title: "[Bug]: "
+labels: [ "bug" ]
+assignees: [ ]     #
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for opening an issue! 😄
+
+        Before diving in, please take a quick look at existing issues — your question might already have been answered! 🔍✨
+
+        We’re a team of passionate volunteers, so by providing clear and detailed info, you’re helping us help you faster. Your contribution is greatly appreciated! ❤️
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: "Provide a short, descriptive title for the bug."
+      placeholder: "e.g., Unexpected error when saving changes"
+
+  ## description
+  - type: textarea
+    id: describe_bug
+    attributes:
+      label: description
+      description: "Explain the issue with all relevant details."
+      placeholder: "A clear and concise description of the bug."
+    validations:
+      required: true
+
+  ## Steps to Reproduce
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Steps to Reproduce
+      description: "List each step clearly and in order."
+      placeholder: "1. Go to '...'\n2. Click on '...'\n3. See error"
+
+  ## Expected Result
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: Expected Result
+      description: "Explain what you expected to happen.  
+      Describe the result you expected instead of the actual outcome."
+      placeholder: "The system should..."
+
+  ## Actual Result
+  - type: textarea
+    id: actual_result
+    attributes:
+      label: Actual Result
+      description: "Explain what happened instead of the expected result."
+      placeholder: "The system actually..."
+
+  ## Environments
+  - type: markdown
+    attributes:
+      value: |
+        ## Environments 
+        Provide details about your testing environment. Include information such as OS, browser, version, etc.
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - windows
+        - linux
+        - mac
+  #  Programing Language
+  - type: dropdown
+    id: language
+    attributes:
+      label: Programing Language
+      options:
+        - javascript
+        - typescript
+  # frameworks
+  - type: dropdown
+    id: framework
+    attributes:
+      label: framework
+      description: "Chose your framework for example: React js"
+      options:
+        - React js
+        - Next js
+        - Angular
+        - javascript(pure project)
+        - Vue
+        - Svelte
+  # Framework version
+  - type: input
+    id: frameworkVersion
+    attributes:
+      label: Framework version
+      description: " e.g. ,Next.js 14, @ 2.1.45"
+      placeholder: "enter version"
+
+  - type: input
+    id: media
+    attributes:
+      label: Screenshots or Video
+      description: "Provide a link to screenshots or videos if possible."
+      placeholder: "Attach or link to any relevant media files , for example:https//: your google drive link "
