@@ -13,12 +13,12 @@ body:
         Please take a moment to describe your idea in detail so we can understand it fully. Check if a similar feature request exists before submitting, as this helps us keep discussions organized. 💡
 
         Our team of dedicated volunteers appreciates the time you spend on this! With your input, we can make this project even better. Thank you for helping us grow! 🌱❤️
-  - type: input
-    id: feature_title
-    attributes:
-      label: Feature Title
-      description: "Provide a concise title for the feature you're suggesting."
-      placeholder: "e.g., Dark mode support"
+  # - type: input
+  #   id: feature_title
+  #   attributes:
+  #     label: Feature Title
+  #     description: "Provide a concise title for the feature you're suggesting."
+  #     placeholder: "e.g., Dark mode support"
 
   - type: textarea
     id: description
