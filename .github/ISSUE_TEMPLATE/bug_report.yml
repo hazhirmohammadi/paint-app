@@ -2,7 +2,7 @@ name: Bug report 🐛
 description: Report a bug or an issue with the project.
 title: "[Bug]: "
 labels: [ "bug" ]
-assignees: [ ]     #
+assignees: [ ]     
 
 body:
   - type: markdown
@@ -25,7 +25,7 @@ body:
     id: describe_bug
     attributes:
       label: description
-      description: "Explain the issue with all relevant details."
+      description: "Provide detailed information about the bug. If you have screenshots or videos, drag and drop them here. You can also upload your code to a service like CodeSandbox and include the link for reference."
       placeholder: "A clear and concise description of the bug."
     validations:
       required: true
@@ -37,7 +37,6 @@ body:
       label: Steps to Reproduce
       description: "List each step clearly and in order."
       placeholder: "1. Go to '...'\n2. Click on '...'\n3. See error"
-
   ## Expected Result
   - type: textarea
     id: expected_result
@@ -55,42 +54,32 @@ body:
       description: "Explain what happened instead of the expected result."
       placeholder: "The system actually..."
 
-  ## Environments
-  - type: markdown
+  # Browser 
+  - type: input
+    id: browser 
     attributes:
-      value: |
-        ## Environments 
-        Provide details about your testing environment. Include information such as OS, browser, version, etc.
-
-  - type: dropdown
-    id: os
-    attributes:
-      label: Operating system
-      options:
-        - windows
-        - linux
-        - mac
+      label: Browser
+      description: "Specify the browser and its version where the bug occurs, e.g., Chrome 95, Firefox 92, Safari 15."
+      placeholder: "Enter browser"
   #  Programing Language
   - type: dropdown
     id: language
     attributes:
       label: Programing Language
       options:
-        - javascript
-        - typescript
+        - JavaScript
+        - TypeScript
+    validations:
+      required: true
   # frameworks
-  - type: dropdown
+  - type: input
     id: framework
     attributes:
-      label: framework
-      description: "Chose your framework for example: React js"
-      options:
-        - React js
-        - Next js
-        - Angular
-        - javascript(pure project)
-        - Vue
-        - Svelte
+      label: Framework
+      description: "Specify the framework where the bug occurs, e.g., React, Angular, Vue."
+      placeholder: "Enter framework"
+    validations:
+      required: true
   # Framework version
   - type: input
     id: frameworkVersion
@@ -98,10 +87,6 @@ body:
       label: Framework version
       description: " e.g. ,Next.js 14, @ 2.1.45"
       placeholder: "enter version"
+    validations:
+      required: true
 
-  - type: input
-    id: media
-    attributes:
-      label: Screenshots or Video
-      description: "Provide a link to screenshots or videos if possible."
-      placeholder: "Attach or link to any relevant media files , for example:https//: your google drive link "
