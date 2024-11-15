@@ -1,0 +1,39 @@
+name: '📝 Documentation'
+description: 'Report an error or suggest an improvement in the documentation.'
+labels: ['documentation']
+body:
+  - type: markdown
+    attributes:
+      value: >
+        ### Found an issue or an unclear section in the documentation?  
+        Please fill out the details below to help us improve it.  
+
+        **Note**: Feel free to open a Pull Request for minor fixes like typos or grammar issues.
+  - type: textarea
+    id: content
+    attributes:
+      label: 'Section/Content To Improve'
+      description: 'Quote or provide a link to the section you found unclear or incorrect.'
+      placeholder: 'e.g. "The installation guide is unclear about X"'
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: 'Suggested Improvement'
+      description: 'Explain what changes could make the section clearer or better.'
+      placeholder: 'e.g. "Add an example for Y"'
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: 'Relevant File(s)'
+      description: 'Mention files or sections you think are related.'
+      placeholder: 'e.g. README.md, docs/setup.md'
+  - type: textarea
+    id: additional
+    attributes:
+      label: 'Additional Notes'
+      description: 'Provide any extra information that could help us understand the issue.'
+      placeholder: 'e.g. This is relevant to version 2.0'
